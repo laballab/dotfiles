@@ -17,32 +17,66 @@ font pango: Terminus 10
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 # font pango:DejaVu Sans Mono 8
 
-######################################################
+# startup execs 
+exec --no-startup-id nitrogen --restore &
+exec --no-startup-id nm-applet
+exec --no-startup-id compton -b
+exec --no-startup-id redshift -l 40.7:-74
+
+##################################################################
 #VARS
-######################################################
+##################################################################
 
 set $mod Mod4
 
-#COLORS
-#Bar Background Text - base00
-set $background #00000055
-# Bar Warning Colour
-set $warning    #e84f4f
-# Active Window Colour
-set $border     #b8bbc3
-# Bar Text Colour - base06
-set $bartext    #eeeeee
-# Active Workspace Color
-set $barfoc     #eeeeee
-# Unrocused Window/Workspace Colour - base04
-set $ufocus     #4b4b4b
-# Window Decoraction Text Colour - base06
-set $dectext    #ffffff
+#COLORS -- FUCKING SHIT DOESN'T WORK YET
+#set_from_resource $color0   color0 #000000
+##set_from_resource $color1   color1
+#set_from_resource $color2   color2
+#set_from_resource $color3   i3wm.color3
+#set_from_resource $color4   i3wm.color4
+#set_from_resource $color5   i3wm.color5
+#set_from_resource $color6   i3wm.color6
+#set_from_resource $color7   i3wm.color7
+#set_from_resource $color8   i3wm.color8
+#set_from_resource $color9   i3wm.color9
+#set_from_resource $color10  i3wm.color10
+
+# --- OBSOLETE FOR NOW UNFORTUNATELY
+#Bar Background - base00
+#set $background #2b2b2b
+# Bar Warning - base08
+#set $warning    #da4939
+# Active Window - base06
+#set $border     #f4f1ed
+# Bar Text - base06
+#set $bartext    #f4f1ed
+# Active Workspace - base06
+#set $barfoc     #f4f1ed
+# Unrocused Window/Workspace - base02
+##set $ufocus     #3a4055
+#set $ufocus     #2b2b2b
+# Window Decoraction Text - base06
+#set $dectext    #f4f1ed
+
+################################
+# These will have to do for now...
+# windows
+set $background #2b2b2b
+set $inactive   #d4cfc9
+set $text       #f4f1ed
+set $intext     #3b3b3b
+set $urgent     #e63935
+# bar
+set $inbackbar  #3f444f
+set $intextbar  #939495
+set $separator  #757575
+################################
 
 #Window Border Thickness
 set $bordersize 1
 # Default Fallback Font
-set $font       leggie 16
+set $font       Ubuntu Mono 10
 # Default Bar Font
 set $barfont    Terminus 10
 # Bar Height
@@ -170,13 +204,17 @@ bindsym $mod+Shift+0 move container to workspace 10
 # BORDERS
 ######################################################
 
-for_window [class=".*"] border pixel $bordersize
+new_window none
+new_float pixel 1
+for_window [class="URxvt"] floating enable
+for_window [class="URxvt"] border pixel 1
 
-# class                 border   backgr.  text      indicator
-client.focused          $border  $border  $dectext  $border
-client.unfocused        $ufocus  $ufocus  $dectext  $ufocus
-client.focused_inactive $ufocus  $ufocus  $dectext  $ufocus
-client.urgent 		      $dectext $dectext $dectext  $dectext
+
+# class                 border      background  text          indicator
+client.focused          $background $inactive   $text         $intextbar
+client.unfocused        $inactive   $intext     $intextbar    $intextbar
+client.focused_inactive $inactive   $intext     $intextbar    $intextbar
+client.urgent 		      $urgent     $urgent     $text         $intextbar
 
 ######################################################
 
@@ -188,6 +226,15 @@ bar {
         status_command i3status
         tray_output primary
         position top
+
+        colors {
+          background         $background  
+          statusline         $inactive
+          separator          $separator
+          focused_workspace  $background $inactive   $background
+          inactive_workspace $background $background $inactive
+          urgent_workspace   $urgent     $urgent     $urgent
+        }
 }
 
 ######################################################

@@ -20,8 +20,10 @@ set smarttab
 
 " indent
 set autoindent
-set smartindent
 
 " search
 set ignorecase
 set smartcase
+
+" wildmenu
+set wildmenu

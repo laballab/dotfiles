@@ -21,9 +21,15 @@ set smarttab
 " indent
 set autoindent
 
+" backspace 
+set backspace=indent,eol,start
+
 " search
 set ignorecase
 set smartcase
 
 " wildmenu
 set wildmenu
+
+" Mac clipboard
+set clipboard=unnamed

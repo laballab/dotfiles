@@ -29,6 +29,7 @@ set ignorecase
 set smartcase
 
 " wildmenu
+set wildmode=longest:list,full
 set wildmenu
 
 " Mac clipboard

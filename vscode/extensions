@@ -1,0 +1,19 @@
+code --install-extension adamhartford.vscode-base64
+code --install-extension christian-kohler.path-intellisense
+code --install-extension CoenraadS.bracket-pair-colorizer-2
+code --install-extension dunstontc.dark-plus-syntax
+code --install-extension golang.go
+code --install-extension hediet.vscode-drawio
+code --install-extension lunaryorn.fish-ide
+code --install-extension mads-hartmann.bash-ide-vscode
+code --install-extension mathiasfrohlich.Kotlin
+code --install-extension ms-toolsai.jupyter
+code --install-extension redhat.java
+code --install-extension redhat.vscode-yaml
+code --install-extension scala-lang.scala
+code --install-extension scalameta.metals
+code --install-extension skyapps.fish-vscode
+code --install-extension VisualStudioExptTeam.vscodeintellicode
+code --install-extension vscodevim.vim
+code --install-extension yzhang.markdown-all-in-one
+

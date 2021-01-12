@@ -15,7 +15,6 @@
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
-    "explorer.autoReveal": false,
     "explorer.openEditors.visible": 0,
     "workbench.colorTheme": "dark-plus-syntax",
     "editor.suggestSelection": "first",

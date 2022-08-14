@@ -5,6 +5,8 @@ let base16colorspace=256
 set t_Co=256
 syntax on
 let mapleader=";"
+set nocompatible
+set hidden
 
 " line num 
 set relativenumber
@@ -29,7 +31,7 @@ set ignorecase
 set smartcase
 
 " wildmenu
-set wildmode=longest:list,full
+set wildmode=longest,list,full
 set wildmenu
 
 " Mac clipboard

@@ -18,6 +18,7 @@ call plug#begin()
   Plug 'psliwka/vim-smoothie'
   Plug 'tpope/vim-fugitive'
   Plug 'sheerun/vim-polyglot'
+  Plug 'kmonad/kmonad-vim'
 call plug#end()
 
 

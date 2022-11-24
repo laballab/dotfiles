@@ -1,34 +1,44 @@
+# ----------------------------------------
+# .zshrc
+# 2022
+# ----------------------------------------
+
+# Sections:
+# <1> - PATH
+# <2> - OMZ
+# <3> - USER
+
+
+# ----------------------------------------
+# PATH Setup
+# ----------------------------------------
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export FZF_BASE=/opt/homebrew/opt/fzf
 
-# Update PATH & remove duplicates
-export PATH="/opt/homebrew/bin:$PATH"
+# update path for brew
+# export PATH="/opt/homebrew/bin:$PATH"
+
+# remove PATH duplicates
 export PATH=$(awk -F: '{for (i=1;i<=NF;i++) { if (!x[$i]++) printf("%s:",$i); }}' <<< $PATH | sed 's/.$//')
 
-
+# completions
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-fpath+=$(brew --prefix)/share/zsh/site-functions
+# fpath+=$(brew --prefix)/share/zsh/site-functions
 
-function get_cluster_short() {
-  echo "$1" | cut -d @ -f2
-}
 
-KUBE_PS1_SYMBOL_ENABLE=false
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.profile ] && source ~/.profile
+# ----------------------------------------
+# OMZ Configs
+# ----------------------------------------
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bureau"
-
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -61,7 +71,7 @@ ZSH_THEME="bureau"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -80,7 +90,25 @@ ZSH_THEME="bureau"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
+
+# Other history configs
+HISTFILE="$HOME/.zsh_history"    # Location of history file
+HISTSIZE=10000000                # Size of history lines in memory
+SAVEHIST=10000000                # Size of history file in lines
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -92,9 +120,13 @@ ZSH_THEME="bureau"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git nice-exit-code fzf colored-man-pages docker aws kubectl kube-ps1 helm pip pipenv ripgrep fzf-tab fast-syntax-highlighting)
 
+# Finally:
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+
+# ----------------------------------------
+# User Configs
+# ----------------------------------------
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -102,11 +134,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -120,16 +152,26 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# kube PS1 func
+function get_cluster_short() {
+  echo "$1" | cut -d @ -f2
+}
 
-# Proxy configs
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
+# Source other dotfiles
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.profile ] && source ~/.profile
 
-# export PATH="/opt/homebrew/bin:/opt/openssl/bin:$PATH"
-
+# ENV exports
 export HOMEBREW_CURLRC=1
+export MOZ_ENABLE_WAYLAND=1
 export FZF_DEFAULT_COMMAND='fd -t f -LIH -E .git --color=never'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_ALT_C_COMMAND='fd -t d -LIH -E .git --color=never'
+# export FZF_BASE=/opt/homebrew/opt/fzf
+
+# Startup commands
 kubeoff
 enable-fzf-tab
-fast-theme -t clean

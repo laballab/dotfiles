@@ -1,0 +1,10 @@
+k9s:
+  refreshRate: 1
+  maxConnRetry: 5
+  enableMouse: false
+  headless: false
+  logoless: true
+  crumbsless: false
+  readOnly: false
+  noExitOnCtrlC: false
+  noIcons: false

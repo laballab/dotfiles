@@ -1,14 +1,63 @@
-/* hides the native tabs */
-#TabsToolbar {
-  visibility: collapse !important;
-  }
+/* Hide main tabs toolbar */
+#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
+    opacity: 0;
+    pointer-events: none;
+}
+#main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+    visibility: collapse !important;
+}
 
-#titlebar {
-  visibility: collapse !important;
-  }
+/* Sidebar min and max width removal */
+#sidebar-box {
+    max-width: none !important;
+    min-width: 0px !important;
+}
+/* Hide splitter, when using Tree Style Tab. */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
+    display: none !important;
+}
+/* Hide sidebar header, when using Tree Style Tab. */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+    visibility: collapse;
+}
 
-#sidebar-header {
-  visibility: collapse !important;
-  } 
+/* Shrink sidebar until hovered, when using Tree Style Tab. */
+:root {
+    --thin-tab-width: 60px;
+    --wide-tab-width: 360px;
+}
+#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+    min-width: var(--wide-tab-width) !important;
+    max-width: none !important;
+}
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+    position: relative !important;
+    transition: all 50ms !important;
+    min-width: var(--thin-tab-width) !important;
+    max-width: var(--thin-tab-width) !important;
+}
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+    transition: all 100ms !important;
+    transition-delay: 0.2s !important;
+    min-width: var(--wide-tab-width) !important;
+    max-width: var(--wide-tab-width) !important;
+    margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+    z-index: 1;
 
+}
+
+/* Avoid overlapping with bookmarks bar when visible */
+/* TODO: fix hard-coded values */
+:root[BookmarksToolbarOverlapsBrowser] #sidebar-box {
+    margin-top: 35px !important;
+    padding-top: 0px !important;
+}
+
+/* Adjust for home page */
+/* TODO: fix hard-coded values */
+:root[BookmarksToolbarOverlapsBrowser] #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+    min-width: calc(var(--wide-tab-width) - 128px) !important;
+    max-width: calc(var(--wide-tab-width) - 128px) !important;
+    margin-right: calc((var(--wide-tab-width) - 128px - var(--thin-tab-width)) * -1) !important;
+}
 

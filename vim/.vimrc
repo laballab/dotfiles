@@ -56,9 +56,9 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " disable fzf preview
 let g:fzf_preview_window = []
 " fzf hotkeys
-nnoremap <C-p> :GFiles<Cr>
-nnoremap <C-P> :Files<Cr>
-nnoremap <C-o> :Buffers<Cr>
+nnoremap <C-l> :Commands<Cr>
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-j> :Buffers<Cr>
 " custom icons for nerdtree git
 let g:NERDTreeGitStatusIndicatorMapCustom = {
       \ 'Modified'  :'*',
@@ -76,6 +76,13 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " ctrl+space for terminal toggle
 nnoremap <C-Space> :FloatermToggle<Cr>
 tnoremap <C-Space> <C-\><C-n>:FloatermToggle<Cr>
+
+" enter to insert newlines
+nnoremap <Enter> o<ESC>
+nnoremap <S-Enter> O<ESC>
+
+" vim smoothie
+let g:smoothie_experimental_mappings = 1
 
 
 " other configs

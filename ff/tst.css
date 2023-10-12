@@ -1,0 +1,63 @@
+/* Custom styling for TreeStyleTab */
+/* Useful examples: https://github.com/piroor/treestyletab/wiki/Code-snippets-for-custom-style-rules */
+
+/* Less visible tab dividers.
+   A black border with a very low alpha slightly darkens any color. */
+tab-item-substance {
+  border-top: solid 1px #0000002F !important;
+}
+
+/* Remove tab counters from tab labels */
+tab-item tab-counter {
+  display: none;
+}
+
+/* Remove dropdown twisty from newtab button */
+.newtab-action-selector-anchor {
+  display: none !important;
+}
+
+/* Add borders to the newtab button */
+.newtab-button {
+    border-top: solid 1px #0000002F !important;
+}
+
+/* Underline instead for container tabs */
+.contextual-identity-marker {
+  top: auto !important;
+  left: 0.5em !important;
+  right: 0.5em !important;
+  bottom: 0 !important;
+  width: auto !important;
+  margin: 0 !important;
+  max-width: none !important;
+  height: calc(var(--favicon-size) / 10) !important;
+}
+
+/* change the base box to layout position:absolute box, from the root container box to the tab item */
+:root.group-tab li {
+  position: relative;
+}
+
+/* Remove excess space to left of tabs */
+/* !important is required when there are enough tabs to cause a scrollbar */
+tab-item:not(.pinned) tab-item-substance {
+  padding-left: 3px !important;
+}
+
+/* Disable indentation of sub-tabs */
+:root.left tab-item-substance {
+	margin-left: calc(var(--tab-margin-left) + var(--tab-indent) * 0.0) !important;
+}
+
+/* Add spacing between favicon & tab label */
+tab-item:not(.collapsed) tab-label {
+	margin-left: 15px
+}
+tab-sound-button {
+	margin-left: 15px
+}
+
+/* Remove tab closebox unless hovering over the tab */
+#tabbar tab-item:not(:hover) tab-closebox { display: none; }
+

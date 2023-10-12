@@ -1,4 +1,5 @@
 ;; INTRO to kmonad lisp and config
+
 ;; WARNING: Don't use anyone's config without any understanding of kmonad or
 ;; it's configuration. Don't even use mine but use it to understand how it
 ;;works.
@@ -13,8 +14,10 @@
 ;; If a key is not bound/left_empty(_) then it will fall back  to the previous
 ;; layer's binding if not then default.
 fallthrough true
+
 ;; To run system commands. You MIGHT face issues with tiling window managers due to command helpers.
 allow-cmd true
+
 ;; use 'ls /dev/input/by-id/' for detachable keyboards and
 ;; 'ls /dev/input/by-path/' for builtin keyboards location'
 input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")

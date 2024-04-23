@@ -17,11 +17,10 @@ ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[yellow]%}●%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"
 
 bureau_git_info () {
-  local ref brn
+  local ref
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-  brn=$(tr "/" " " <<< "${ref#refs/heads/}")
-  echo "$(echo $brn | awk '{print $1}')"
+  echo "${ref#refs/heads/}"
 }
 
 bureau_git_status() {
@@ -96,15 +95,16 @@ else
   _USERNAME="%{$fg_bold[white]%}%n"
   _LIBERTY="%{$fg[green]%}$"
 fi
-_USERNAME="$_USERNAME%{$reset_color%}@mac"
+_USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
 
+ZLE_RPROMPT_INDENT=0
 
 get_space () {
   local STR=$1$2
   local zero='%([BSUbfksu]|([FB]|){*})'
   local LENGTH=${#${(S%%)STR//$~zero/}}
-  local SPACES=$(( COLUMNS - LENGTH - ${ZLE_RPROMPT_INDENT:-1} ))
+  local SPACES=$(( COLUMNS - LENGTH - ${ZLE_RPROMPT_INDENT:-0} ))
 
   (( SPACES > 0 )) || return
   printf ' %.0s' {1..$SPACES}

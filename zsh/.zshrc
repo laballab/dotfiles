@@ -1,16 +1,14 @@
-# ----------------------------------------
 # .zshrc
-# 2022
+# 2024
+
+# sections:
+# - path
+# - oh-my-zsh
+# - configs
+
+
 # ----------------------------------------
-
-# Sections:
-# <1> - PATH
-# <2> - OMZ
-# <3> - USER
-
-
-# ----------------------------------------
-# PATH Setup
+# path
 # ----------------------------------------
 
 # If you come from bash you might have to change your $PATH.
@@ -31,7 +29,7 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 
 # ----------------------------------------
-# OMZ Configs
+# oh-my-zsh
 # ----------------------------------------
 
 # Set name of the theme to load
@@ -51,21 +49,14 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # History configs
 HIST_STAMPS="mm/dd/yyyy"
 HISTFILE="$HOME/.zsh_history"    # Location of history file
-HISTSIZE=10000000                # Size of history lines in memory
-SAVEHIST=10000000                # Size of history file in lines
+HISTSIZE=100000000000            # Size of history lines in memory
+SAVEHIST=100000000000            # Size of history file in lines
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
 setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -80,7 +71,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 # ----------------------------------------
-# User Configs
+# configs
 # ----------------------------------------
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -131,8 +122,6 @@ fi
 # Startup commands
 kubeoff
 enable-fzf-tab
-
-# Enable broot
-if command -v broot &> /dev/null; then
-  source /home/lb/.config/broot/launcher/bash/br
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
 fi

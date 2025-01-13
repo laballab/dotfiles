@@ -45,7 +45,6 @@ call plug#begin()
   Plug 'voldikss/vim-floaterm'
   Plug 'psliwka/vim-smoothie'
   Plug 'mhinz/vim-startify'
-  Plug 'wfxr/minimap.vim'
 " utils
   Plug 'junegunn/vim-peekaboo'
   Plug 'sheerun/vim-polyglot'
@@ -140,11 +139,6 @@ let g:floaterm_wintype = "split"
 let g:floaterm_height = 0.4
 nnoremap <C-Space> :FloatermToggle<Cr>
 tnoremap <C-Space> <C-\><C-n>:FloatermToggle<Cr>
-
-" minimap
-let g:minimap_width = 8
-let g:minimap_git_colors = 1
-let g:minimap_block_buftypes = ['help', 'nofile', 'nowrite', 'quickfix', 'terminal', 'prompt']
 
 " flog format
 let g:flog_permanent_default_opts = {

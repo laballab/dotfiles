@@ -63,8 +63,8 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nice-exit-code fzf colored-man-pages docker aws \
-         kubectl kube-ps1 helm pip pipenv ripgrep fzf-tab fast-syntax-highlighting)
+plugins=(git nice-exit-code fzf colored-man-pages docker aws kubectl kube-ps1\
+         helm pip pipenv fzf-tab fast-syntax-highlighting  zsh-interactive-cd)
 
 # Finally:
 source $ZSH/oh-my-zsh.sh
@@ -91,11 +91,10 @@ autoload run-help
 HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
 
 # kube PS1 func
+KUBE_PS1_SYMBOL_ENABLE=false
 function get_cluster_short() {
   echo "$1" | cut -d @ -f2
 }
-
-KUBE_PS1_SYMBOL_ENABLE=false
 KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
 # Source other dotfiles if present
@@ -108,7 +107,7 @@ export MOZ_ENABLE_WAYLAND=1
 export FZF_DEFAULT_COMMAND='fd -t f -LIH -E .git --color=never'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_ALT_C_COMMAND='fd -t d -LIH -E .git --color=never'
-# export FZF_BASE=/opt/homebrew/opt/fzf
+export FZF_BASE=$(which fzf)
 
 # LS Aliases
 if command -v lsd &> /dev/null; then
@@ -125,3 +124,6 @@ enable-fzf-tab
 if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi
+
+if [ "$TMUX" = "" ]; then tmux; fi
+

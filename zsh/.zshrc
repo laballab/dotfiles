@@ -12,13 +12,13 @@
 # ----------------------------------------
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # update path for brew
-# export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 
 # remove PATH duplicates
 export PATH=$(awk -F: '{for (i=1;i<=NF;i++) { if (!x[$i]++) printf("%s:",$i); }}' <<< $PATH | sed 's/.$//')
@@ -41,7 +41,7 @@ ZSH_THEME="bureau"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -61,7 +61,6 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git nice-exit-code fzf colored-man-pages docker aws kubectl kube-ps1\
          helm pip pipenv fzf-tab fast-syntax-highlighting  zsh-interactive-cd)

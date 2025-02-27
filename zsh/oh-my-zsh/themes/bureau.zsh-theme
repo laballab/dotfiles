@@ -7,14 +7,15 @@ ZSH_THEME_NVM_PROMPT_SUFFIX=""
 
 ### Git [±master ▾●]
 
-ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%}±%{$reset_color%}%{$fg_bold[white]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%}>%{$reset_color%}%{$fg_bold[white]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▴%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}▾%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[yellow]%}●%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}-%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}^%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}<%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}r%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[yellow]%}m%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}u%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STASHED="(%{$fg_bold[blue]%}s%{$reset_color%})"
 
 bureau_git_info () {
   local ref
@@ -67,6 +68,11 @@ bureau_git_status() {
 }
 
 bureau_git_prompt() {
+  # ignore non-git dirs
+  if ! command git rev-parse --git-dir &> /dev/null; then
+    return
+  fi
+
   # check git information
   local gitinfo=$(bureau_git_info)
   if [[ -z "$gitinfo" ]]; then

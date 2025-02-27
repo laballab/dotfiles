@@ -45,6 +45,7 @@ call plug#begin()
   Plug 'voldikss/vim-floaterm'
   Plug 'psliwka/vim-smoothie'
   Plug 'mhinz/vim-startify'
+  Plug 'dstein64/vim-win'
 " utils
   Plug 'junegunn/vim-peekaboo'
   Plug 'sheerun/vim-polyglot'
@@ -53,6 +54,8 @@ call plug#begin()
   Plug 'kmonad/kmonad-vim'
   Plug 'wincent/terminus'
   Plug 'mbbill/undotree'
+  " neovim
+  Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 
@@ -75,6 +78,7 @@ let g:startify_custom_header = [
 let g:startify_change_to_dir = 0
 
 " transparent background
+let g:enfocado_plugins = [ 'none' ]
 augroup enfocado_customization
   autocmd!
     autocmd ColorScheme enfocado highlight Normal ctermbg=NONE guibg=NONE
@@ -115,7 +119,70 @@ augroup fern_group
   autocmd!
     autocmd FileType fern setlocal norelativenumber | setlocal nonumber | call glyph_palette#apply()
 augroup END
-nnoremap <C-N> :Fern . -drawer -toggle -reveal=%<Cr>
+nnoremap <C-N> :Fern . -drawer -toggle -reveal=%<Cr><C-W>=
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> R <Plug>(fern-action-rename)
+  nmap <buffer> S <Plug>(fern-action-open:split)
+  nmap <buffer> V <Plug>(fern-action-open:vsplit)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> <nowait> d <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> <nowait> < <Plug>(fern-action-leave)
+  nmap <buffer> <nowait> > <Plug>(fern-action-enter)
+endfunction
+augroup FernEvents
+  autocmd!
+  autocmd FileType fern call FernInit()
+augroup END
+
+" vim-win configs
+highlight link WinActive CursorLineNr
+highlight link WinInactive MsgSeparator
+highlight link WinNeighbor MsgSeparator
+highlight link WinStar Directory
+if has ('nvim')
+  highlight link WinPrompt WinSeparator
+else
+  highlight link WinPrompt Normal
+endif
+let g:win_resize_height = 3
+let g:win_resize_width = 4
+let g:win_disable_version_warning = 1
+let g:win_ext_command_map = {
+      \   'c': 'wincmd c',
+      \   'd': 'wincmd c',
+      \   'C': 'close!',
+      \   'q': 'Win#exit',
+      \   'w': 'Win#exit',
+      \   'Q': 'quit!',
+      \   '!': 'qall!',
+      \   'V': 'wincmd v',
+      \   'S': 'wincmd s',
+      \   'n': 'bnext',
+      \   'N': 'bnext!',
+      \   'p': 'bprevious',
+      \   'P': 'bprevious!',
+      \   "\<c-n>": 'tabnext',
+      \   "\<c-p>": 'tabprevious',
+      \   '=': 'wincmd =',
+      \   'f': 'wincmd _',
+      \   '_': 'wincmd _',
+      \   't': 'tabnew',
+      \   'x': 'Win#exit'
+      \ }
+
+" sneak configs
+highlight link Sneak None " disable highlight
+let g:sneak#use_ic_scs = 1 " case-insensitive
+let g:sneak#s_next = 1 " clever-s
 
 " gitgutter configs
 if has('nvim')
@@ -130,15 +197,21 @@ let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1.0 } }
 
 " fzf hotkeys
 " nnoremap <C-p> :GFiles<Cr>
-nnoremap <C-P> :Files<Cr>
+nnoremap <C-P> :FernDo close \| :Files<Cr>
 nnoremap <C-J> :Buffers<Cr>
 nnoremap <C-H> :Commands<Cr>
 
 " ctrl+space for terminal toggle
 let g:floaterm_wintype = "split"
 let g:floaterm_height = 0.4
-nnoremap <C-Space> :FloatermToggle<Cr>
-tnoremap <C-Space> <C-\><C-n>:FloatermToggle<Cr>
+if has ('nvim')
+  nnoremap <C-Space> :FernDo close \| :FloatermToggle<Cr>
+  tnoremap <C-Space> <C-\><C-n>:FernDo close \| :FloatermToggle<Cr>
+else
+  nnoremap <NUL> :FernDo close \| :FloatermToggle<Cr>
+  tnoremap <NUL> <C-\><C-n>:FernDo close \| :FloatermToggle<Cr>
+endif
+
 
 " flog format
 let g:flog_permanent_default_opts = {
@@ -176,6 +249,9 @@ nnoremap <S-Enter> O<ESC>
 set ignorecase
 set smartcase
 
+" leader
+let mapleader = " "
+
 " backspace
 set backspace=indent,eol,start
 
@@ -209,6 +285,12 @@ set background=dark
 colorscheme enfocado
 hi Floaterm guibg=NONE
 hi FloatermNC guibg=NONE
+
+" load stuff
+filetype plugin indent on
+
+" makefile configs
+autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 
 " apply theme above to fzf-colors
 let g:fzf_colors = {

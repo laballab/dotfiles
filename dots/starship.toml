@@ -1,0 +1,393 @@
+add_newline = false
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+continuation_prompt = "[.](bright-black) "
+
+[character]
+success_symbol = "[>](white) [\\$](green)"
+error_symbol = "[\\$](white)"
+vimcmd_symbol = "[<](bold green)"
+vimcmd_visual_symbol = "[<](bold yellow)"
+vimcmd_replace_symbol = "[<](bold purple)"
+vimcmd_replace_one_symbol = "[<](bold purple)"
+
+[git_commit]
+tag_symbol = " tag "
+
+[git_status]
+conflicted = "[!<](bold red)"
+untracked = "[?](cyan)"
+modified = "[!](bold yellow)"
+staged = "[+](green)"
+style = "bold white"
+format = "([$all_status$ahead_behind]($style) )"
+ahead = "[!>](bold green)"
+behind = "[!<](bold purple)"
+diverged = "[<>](bold red)"
+renamed = "[>](bold purple)"
+deleted = "[*](red)"
+
+[aws]
+disabled = true
+symbol = "aws "
+
+[azure]
+symbol = "az "
+
+[battery]
+full_symbol = "full "
+charging_symbol = "charging "
+discharging_symbol = "discharging "
+unknown_symbol = "unknown "
+empty_symbol = "empty "
+
+[buf]
+symbol = "buf "
+
+[bun]
+symbol = "bun "
+
+[c]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "c"
+
+[cpp]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "cpp"
+
+[cobol]
+symbol = "cobol "
+
+[conda]
+symbol = "conda "
+
+[container]
+symbol = "container "
+
+[crystal]
+symbol = "cr "
+
+[cmake]
+symbol = "cmake "
+
+[daml]
+symbol = "daml "
+
+[dart]
+symbol = "dart "
+
+[deno]
+symbol = "deno "
+
+[dotnet]
+format = "via [$symbol($version )(target $tfm )]($style)"
+symbol = ".NET "
+
+[directory]
+style = "cyan"
+format = "[$path]($style)([$read_only]($read_only_style))"
+read_only_style = "bold red"
+read_only = "//ro"
+
+[docker_context]
+symbol = "dckr"
+
+[elixir]
+symbol = "exs "
+
+[elm]
+symbol = "elm "
+
+[erlang]
+symbol = "erl "
+
+[fennel]
+symbol = "fnl "
+
+[fortran]
+symbol = "fortran "
+
+[fossil_branch]
+symbol = "fossil "
+truncation_symbol = "..."
+
+[gcloud]
+symbol = "gcp "
+
+[git_branch]
+truncation_length = 21
+format = "[\\(](bold white)[$branch]($style)[\\)](bold white)"
+style = "purple"
+symbol = ""
+truncation_symbol = ""
+
+[gleam]
+symbol = "gleam "
+
+[golang]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "go"
+
+[gradle]
+symbol = "gradle "
+
+[guix_shell]
+symbol = "guix "
+
+[haskell]
+symbol = "haskell "
+
+[haxe]
+symbol = "hx "
+
+[helm]
+symbol = "helm"
+
+[hg_branch]
+symbol = "hg "
+truncation_symbol = "..."
+
+[hostname]
+format = "[$hostname]($style)[:/](bold white)"
+style = "bold yellow"
+ssh_only = false
+ssh_symbol = "ssh "
+
+[java]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "java"
+
+[jobs]
+symbol = "*"
+
+[julia]
+symbol = "jl "
+
+[kotlin]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "ktln"
+
+[kubernetes]
+symbol = "k8s"
+
+[lua]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "lua"
+
+[nodejs]
+disabled = true
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "js"
+
+[memory_usage]
+symbol = "memory "
+
+[meson]
+symbol = "meson "
+truncation_symbol = "..."
+
+[mojo]
+symbol = "mojo "
+
+[nats]
+symbol = "nats "
+
+[netns]
+symbol = "netns "
+
+[nim]
+symbol = "nim "
+
+[nix_shell]
+symbol = "nix "
+
+[ocaml]
+symbol = "ml "
+
+[odin]
+symbol = "odin "
+
+[opa]
+symbol = "opa "
+
+[openstack]
+symbol = "openstack "
+
+[os.symbols]
+AIX = "aix "
+Alpaquita = "alq "
+AlmaLinux = "alma "
+Alpine = "alp "
+ALTLinux = "alt "
+Amazon = "amz "
+Android = "andr "
+AOSC = "aosc "
+Arch = "rch "
+Artix = "atx "
+Bluefin = "blfn "
+CachyOS = "cach "
+CentOS = "cent "
+Debian = "deb "
+DragonFly = "dfbsd "
+Elementary = "elem "
+Emscripten = "emsc "
+EndeavourOS = "ndev "
+Fedora = "fed "
+FreeBSD = "fbsd "
+Garuda = "garu "
+Gentoo = "gent "
+HardenedBSD = "hbsd "
+Illumos = "lum "
+Ios = "ios "
+InstantOS = "inst "
+Kali = "kali "
+Linux = "lnx "
+Mabox = "mbox "
+Macos = "mac "
+Manjaro = "mjo "
+Mariner = "mrn "
+MidnightBSD = "mid "
+Mint = "mint "
+NetBSD = "nbsd "
+NixOS = "nix "
+Nobara = "nbra "
+OpenBSD = "obsd "
+OpenCloudOS = "ocos "
+openEuler = "oeul "
+openSUSE = "osuse "
+OracleLinux = "orac "
+PikaOS = "pika "
+Pop = "pop "
+Raspbian = "rasp "
+Redhat = "rhl "
+RedHatEnterprise = "rhel "
+RockyLinux = "rky "
+Redox = "redox "
+Solus = "sol "
+SUSE = "suse "
+Ubuntu = "ubnt "
+Ultramarine = "ultm "
+Unknown = "unk "
+Uos = "uos "
+Void = "void "
+Windows = "win "
+Zorin = "zorn "
+
+[package]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "pkg"
+
+[perl]
+symbol = "pl "
+
+[php]
+symbol = "php "
+
+[pijul_channel]
+symbol = "pijul "
+truncation_symbol = "..."
+
+[pixi]
+symbol = "pixi "
+
+[pulumi]
+symbol = "pulumi "
+
+[purescript]
+symbol = "purs "
+
+[python]
+disabled = true
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "py"
+
+[quarto]
+symbol = "quarto "
+
+[raku]
+symbol = "raku "
+
+[red]
+symbol = "red "
+
+[rlang]
+symbol = "r "
+
+[ruby]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "rb"
+
+[rust]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "rs"
+
+[scala]
+symbol = "scala "
+
+[shlvl]
+symbol = "shlvl "
+
+[spack]
+symbol = "spack "
+
+[solidity]
+symbol = "solidity "
+
+[status]
+format = "[$status]($style)[ ](white)"
+style = "bold red"
+disabled = false
+symbol = "[x](bold red) "
+not_executable_symbol = "noexec"
+not_found_symbol = "notfound"
+sigint_symbol = "sigint"
+signal_symbol = "sig"
+
+[sudo]
+symbol = "sudo "
+
+[swift]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "sw"
+
+[typst]
+symbol = "typst "
+
+[vagrant]
+symbol = "vagrant "
+
+[terraform]
+disabled = true
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "tf"
+
+[xmake]
+symbol = "xmake "
+
+[zig]
+format = "[$symbol($version )]($style)"
+version_format = "~${major}.${minor}"
+symbol = "zig"
+
+[username]
+format = "[$user]($style)[@](bold white)"
+style_root = "red"
+style_user = "yellow"
+show_always = true
+
+[cmd_duration]
+disabled = true

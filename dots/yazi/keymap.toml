@@ -1,0 +1,20 @@
+[[mgr.prepend_keymap]]
+on   = "t"
+run  = "plugin toggle-ratio"
+desc = "toggle preview size"
+
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "enter or open"
+
+[[mgr.prepend_keymap]]
+on   = "!"
+for  = "unix"
+run  = 'shell "$SHELL" --block'
+desc = "open $SHELL here"
+
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "cancel"

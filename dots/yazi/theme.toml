@@ -1,0 +1,16 @@
+[mgr]
+border_style = { bold = true }
+folder = { fg = "blue", bold = true }
+
+[filetype]
+rules = [
+  # media
+  { mime = "image/*", fg = "yellow" },
+  { mime = "video/*", fg = "magenta" },
+  { mime = "audio/*", fg = "cyan" },
+
+  # dirs etc
+  { name = "*/", fg = "blue", bold = true },
+  { name = "*", is = "exec", fg = "green", bold = true },
+  { name = "*", is = "orphan", fg = "red", bold = true },
+]

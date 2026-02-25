@@ -1,0 +1,32 @@
+---
+# lsd defaults shared across machines
+blocks:
+  - permission
+  - user
+  - group
+  - size
+  - date
+  - name
+color:
+  theme: default
+  when: auto
+date: "+%m/%d|%H:%M"
+dereference: false
+display: visible-only
+hyperlink: never
+icons:
+  separator: " "
+  theme: fancy
+  when: auto
+ignore-globs:
+  - .DS_Store
+indicators: true
+layout: grid
+permission: rwx
+size: short
+sorting:
+  column: name
+  dir-grouping: first
+  reverse: false
+symlink-arrow: "->"
+total-size: false

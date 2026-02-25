@@ -1,0 +1,5 @@
+model = "gpt-5.2-codex-max"
+model_reasoning_effort = "medium"
+
+[features]
+web_search_request = true
